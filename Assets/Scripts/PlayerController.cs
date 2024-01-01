@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody rigidbody;
     private float rotationSpeed = 1.25f;
-    private int score;
+    private int score = 1000;
     private float fuel = 100;
     private float speedConsumingFuel = 1.5f;
 
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         detectInput();
         consumeFuel();
         updateUIFuel();
+        updateUIScore();
     }
 
     void detectInput()
@@ -70,14 +71,30 @@ public class PlayerController : MonoBehaviour
         StatsManager.fuel = this.fuel;
     }
 
+    void updateUIScore()
+    {
+        StatsManager.score = this.score;
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Fuel")
         {
             this.fuel += 10;
             Destroy(collision.gameObject);
-        }       
+        }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Unsafe")
+        {
+            this.score -= 100;
+        }
+        else if (collision.gameObject.tag == "Arrival")
+        {
+            Debug.Log("Final del nivel");
+        }
+    }
 
 }
