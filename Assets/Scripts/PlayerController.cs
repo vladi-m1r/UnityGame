@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody rigidbody;
-    private float rotationSpeed = 1.25f;
-    private int score = 1000;
-    private float fuel = 100;
-    private float speedConsumingFuel = 1.5f;
+    private int rotationSpeed = 160; // degrees
+    private int _score = 1000;
+    private float _fuel = 100;
+    private float fuelConsumptionRate = 1.5f;
 
     void Start()
     {
@@ -27,11 +27,20 @@ public class PlayerController : MonoBehaviour
 
     void detectInput()
     {
+        propel();
+        rotate();
+    }
+
+    void propel()
+    {
         if (Input.GetKey(KeyCode.Space))
         {
-            propel();
+            rigidbody.AddRelativeForce(Vector3.up);
         }
+    }
 
+    void rotate()
+    {
         if (Input.GetKey(KeyCode.A))
         {
             rotateLeft();
@@ -42,45 +51,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void propel()
-    {
-        rigidbody.AddRelativeForce(Vector3.up);
-    }
-
     void rotateRight()
     {
-        var rotarDerecha = transform.rotation;
-        rotarDerecha.z -= Time.deltaTime * rotationSpeed;
-        transform.rotation = rotarDerecha;
+        Vector3 eulerAngleVelocity = new Vector3(0, 0, -this.rotationSpeed);
+        Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
+        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
     }
 
     void rotateLeft()
     {
-        var rotarIzquierda = transform.rotation;
-        rotarIzquierda.z += Time.deltaTime * rotationSpeed;
-        transform.rotation = rotarIzquierda;
+        Vector3 eulerAngleVelocity = new Vector3(0, 0, this.rotationSpeed);
+        Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
+        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
     }
 
     void consumeFuel()
     {
-        this.fuel -= Time.deltaTime * this.speedConsumingFuel;
+        this.Fuel -= Time.deltaTime * this.fuelConsumptionRate;
     }
 
     void updateUIFuel()
     {
-        StatsManager.fuel = this.fuel;
+        StatsManager.fuel = this.Fuel;
     }
 
     void updateUIScore()
     {
-        StatsManager.score = this.score;
+        StatsManager.score = this.Score;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Fuel")
         {
-            this.fuel += 10;
+            this.Fuel += 10;
             Destroy(collision.gameObject);
         }
     }
@@ -89,11 +93,29 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Unsafe")
         {
-            this.score -= 100;
+            this.Score -= 100;
         }
         else if (collision.gameObject.tag == "Arrival")
         {
             Debug.Log("Final del nivel");
+        }
+    }
+
+    public float Fuel
+    {
+        get => _fuel;
+        set
+        {
+            _fuel = value < 0 ? 0 : value;
+        }
+    }
+
+    public int Score
+    {
+        get => _score;
+        set
+        {
+            _score = value < 0 ? 0 : value;
         }
     }
 
