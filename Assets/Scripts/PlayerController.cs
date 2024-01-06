@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
+    public float timeToNextCollision = 1;
+    private float timeToNextCollisionCount;
     private Rigidbody rigidbody;
     private int rotationSpeed = 160; // degrees
     private int _score = 1000;
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        this.timeToNextCollisionCount = timeToNextCollision;
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
         consumeFuel();
         updateUIFuel();
         updateUIScore();
+        updateCountToNexCollision();
     }
 
     void detectInput()
@@ -92,6 +96,14 @@ public class PlayerController : MonoBehaviour
         this.Fuel -= Time.deltaTime * this.fuelConsumptionRate;
     }
 
+    void updateCountToNexCollision()
+    {
+        if (this.timeToNextCollisionCount > 0)
+        {
+            this.timeToNextCollisionCount -= Time.deltaTime;
+        }
+    }
+
     void updateUIFuel()
     {
         StatsManager.fuel = this.Fuel;
@@ -115,7 +127,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Unsafe")
         {
-            this.Score -= 100;
+            if (this.timeToNextCollisionCount <= 0) {
+                this.Score -= 100;
+                this.timeToNextCollisionCount = this.timeToNextCollision;
+            }
         }
         else if (collision.gameObject.tag == "Arrival")
         {
