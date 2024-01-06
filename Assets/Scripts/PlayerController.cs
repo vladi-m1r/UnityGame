@@ -49,6 +49,14 @@ public class PlayerController : MonoBehaviour
         {
             rotateRight();
         }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            rotateBack();
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            rotateFront();
+        }
     }
 
     void rotateRight()
@@ -61,6 +69,20 @@ public class PlayerController : MonoBehaviour
     void rotateLeft()
     {
         Vector3 eulerAngleVelocity = new Vector3(0, 0, this.rotationSpeed);
+        Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
+        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+    }
+
+    void rotateBack()
+    {
+        Vector3 eulerAngleVelocity = new Vector3(this.rotationSpeed, 0, 0);
+        Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
+        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+    }
+
+    void rotateFront()
+    {
+        Vector3 eulerAngleVelocity = new Vector3(-this.rotationSpeed, 0, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
     }
