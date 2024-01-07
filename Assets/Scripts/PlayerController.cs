@@ -142,6 +142,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Fuel")
         {
             this.Fuel += this.fuelRecover;
+            createFloatingText(Color.green, $"+{this.fuelRecover}");
             Destroy(collision.gameObject);
         }
     }
