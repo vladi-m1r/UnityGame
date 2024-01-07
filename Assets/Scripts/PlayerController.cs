@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private int scoreLoseByCollision;
     public float timeToNextCollision = 1;
     private float timeToNextCollisionCount;
-    private Rigidbody rigidbody;
+    private Rigidbody rigidBody;
     private int rotationSpeed = 160; // degrees
     private int _score = 1000;
     private float _fuel = 100;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         this.Health = this.healthMax;
         this.healtLoseByCollision = healthMax / 5 - nivel + 1;
         this.scoreLoseByCollision = 100;
-        rigidbody = GetComponent<Rigidbody>();
+        this.rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidbody.AddRelativeForce(Vector3.up);
+            rigidBody.AddRelativeForce(Vector3.up);
         }
     }
 
@@ -77,28 +77,28 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 eulerAngleVelocity = new Vector3(0, 0, -this.rotationSpeed);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
-        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+        rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateLeft()
     {
         Vector3 eulerAngleVelocity = new Vector3(0, 0, this.rotationSpeed);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
-        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+        rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateBack()
     {
         Vector3 eulerAngleVelocity = new Vector3(this.rotationSpeed, 0, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
-        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+        rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateFront()
     {
         Vector3 eulerAngleVelocity = new Vector3(-this.rotationSpeed, 0, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
-        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+        rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void consumeFuel()
@@ -142,7 +142,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Unsafe")
         {
-            if (this.timeToNextCollisionCount <= 0) {
+            if (this.timeToNextCollisionCount <= 0)
+            {
                 this.Score -= this.scoreLoseByCollision;
                 this.Health -= this.healtLoseByCollision;
                 this.timeToNextCollisionCount = this.timeToNextCollision;
