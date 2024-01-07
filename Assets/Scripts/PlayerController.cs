@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private float _fuel = 100;
     private float fuelRecover = 10;
     private float fuelConsumptionRate = 1.5f;
+    public GameObject floatingText;
 
     void Start()
     {
@@ -151,9 +152,9 @@ public class PlayerController : MonoBehaviour
         {
             if (this.timeToNextCollisionCount <= 0)
             {
+                createFloatingText(Color.red, $"-{this.healtLoseByCollision}");
                 this.Score -= this.scoreLoseByCollision;
                 this.Health -= this.healtLoseByCollision;
-
                 this.timeToNextCollisionCount = this.timeToNextCollision;
             }
         }
@@ -161,6 +162,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Final del nivel");
         }
+    }
+
+    private void createFloatingText(Color color, string text) {
+        GameObject floatingTextContainer = Instantiate(this.floatingText, this.transform.position, Quaternion.identity);
+        floatingTextContainer.GetComponent<FloatingText>().parentTransformPosition = this.transform;
+        floatingTextContainer.GetComponent<FloatingText>().text = text;
+        floatingTextContainer.GetComponent<FloatingText>().color = color;
     }
 
     public float Fuel

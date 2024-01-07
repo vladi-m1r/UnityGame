@@ -1716,6 +1716,7 @@ MonoBehaviour:
   nivel: 1
   healthMax: 100
   timeToNextCollision: 1
+  floatingText: {fileID: 447113225800154789, guid: ef52b25861d27e749980799ded9d2f2b, type: 3}
 --- !u!1001 &569891941
 PrefabInstance:
   m_ObjectHideFlags: 0
