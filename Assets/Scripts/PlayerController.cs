@@ -5,17 +5,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
+    public int nivel;
+    public int healthMax;
+    private int _healt;
+    private int healtLoseByCollision;
+    private int scoreLoseByCollision;
     public float timeToNextCollision = 1;
     private float timeToNextCollisionCount;
     private Rigidbody rigidbody;
     private int rotationSpeed = 160; // degrees
     private int _score = 1000;
     private float _fuel = 100;
+    private float fuelRecover = 10;
     private float fuelConsumptionRate = 1.5f;
 
     void Start()
     {
         this.timeToNextCollisionCount = timeToNextCollision;
+        this.Health = this.healthMax;
+        this.healtLoseByCollision = healthMax / 5 - nivel + 1;
+        this.scoreLoseByCollision = 100;
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -26,6 +35,7 @@ public class PlayerController : MonoBehaviour
         consumeFuel();
         updateUIFuel();
         updateUIScore();
+        updateUIHealth();
         updateCountToNexCollision();
     }
 
@@ -114,11 +124,16 @@ public class PlayerController : MonoBehaviour
         StatsManager.score = this.Score;
     }
 
+    void updateUIHealth()
+    {
+        StatsManager.health = this.Health;
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Fuel")
         {
-            this.Fuel += 10;
+            this.Fuel += this.fuelRecover;
             Destroy(collision.gameObject);
         }
     }
@@ -128,7 +143,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Unsafe")
         {
             if (this.timeToNextCollisionCount <= 0) {
-                this.Score -= 100;
+                this.Score -= this.scoreLoseByCollision;
+                this.Health -= this.healtLoseByCollision;
                 this.timeToNextCollisionCount = this.timeToNextCollision;
             }
         }
@@ -153,6 +169,15 @@ public class PlayerController : MonoBehaviour
         set
         {
             _score = value < 0 ? 0 : value;
+        }
+    }
+
+    public int Health
+    {
+        get => _healt;
+        set
+        {
+            _healt = value < 0 ? 0 : value;
         }
     }
 

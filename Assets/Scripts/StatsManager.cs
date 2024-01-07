@@ -7,8 +7,10 @@ public class StatsManager: MonoBehaviour
 {
     public static float fuel;
     public static float score;
+    public static float health;
     public Text fuelStat;
     public Text scoreStat;
+    public Text healthStat;
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +23,6 @@ public class StatsManager: MonoBehaviour
     {
         fuelStat.text = "Fuel: " + fuel;
         scoreStat.text = "Score: " + score;
+        healthStat.text = "Health: " + health;
     }
 }
