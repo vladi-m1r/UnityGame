@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         this.timeToNextCollisionCount = timeToNextCollision;
         this.Health = this.healthMax;
-        this.healtLoseByCollision = healthMax / 5 - nivel + 1;
+        this.healtLoseByCollision = this.healthMax / (5 - nivel + 2);
         this.scoreLoseByCollision = 100;
         this.rigidBody = GetComponent<Rigidbody>();
     }
