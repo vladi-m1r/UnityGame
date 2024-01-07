@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76baa63980d54374aba3524f529463eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 10.1
-  offset: {x: 0, y: 2, z: 0}
+  destroyTime: 1.1
   parentTransformPosition: {fileID: 0}
   text: 
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &8726295696161669008
 PrefabInstance:
   m_ObjectHideFlags: 0

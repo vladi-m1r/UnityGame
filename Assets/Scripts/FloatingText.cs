@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FloatingText : MonoBehaviour
 {
-    public float destroyTime = 10.1f;
+    public float destroyTime = 1.1f;
     public Transform parentTransformPosition;
     public string text;
     public Color color;
