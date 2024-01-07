@@ -49,7 +49,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidBody.AddRelativeForce(Vector3.up);
+            if (this.Fuel > 0)
+            {
+                rigidBody.AddRelativeForce(Vector3.up);
+            }
         }
     }
 
@@ -127,6 +130,10 @@ public class PlayerController : MonoBehaviour
     void updateUIHealth()
     {
         StatsManager.health = this.Health;
+        if (this.Health <= 0) 
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -146,6 +153,7 @@ public class PlayerController : MonoBehaviour
             {
                 this.Score -= this.scoreLoseByCollision;
                 this.Health -= this.healtLoseByCollision;
+
                 this.timeToNextCollisionCount = this.timeToNextCollision;
             }
         }
