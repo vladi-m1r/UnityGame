@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private float _fuel = 100;
     private float fuelRecover = 10;
     private float fuelConsumptionRate = 1.5f;
+    public GameObject audioSourceManager;
     public GameObject floatingText;
 
     void Start()
@@ -121,6 +122,10 @@ public class PlayerController : MonoBehaviour
     void updateUIFuel()
     {
         StatsManager.fuel = this.Fuel;
+        AudioSource fuelAudioSource = this.audioSourceManager.GetComponents<AudioSource>()[2];
+        if (this.Fuel <= 6 && this.Fuel > 0 && !fuelAudioSource.isPlaying) {
+            fuelAudioSource.Play();
+        }
     }
 
     void updateUIScore()
@@ -133,6 +138,7 @@ public class PlayerController : MonoBehaviour
         StatsManager.health = this.Health;
         if (this.Health <= 0) 
         {
+            this.audioSourceManager.GetComponents<AudioSource>()[3].Play();
             this.gameObject.SetActive(false);
         }
     }
@@ -141,6 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fuel")
         {
+            this.audioSourceManager.GetComponents<AudioSource>()[1].Play();
             this.Fuel += this.fuelRecover;
             createFloatingText(Color.green, $"+{this.fuelRecover}");
             Destroy(collision.gameObject);
@@ -154,6 +161,7 @@ public class PlayerController : MonoBehaviour
             if (this.timeToNextCollisionCount <= 0)
             {
                 createFloatingText(Color.red, $"-{this.healtLoseByCollision}");
+                this.audioSourceManager.GetComponent<AudioSource>().Play();
                 this.Score -= this.scoreLoseByCollision;
                 this.Health -= this.healtLoseByCollision;
                 this.timeToNextCollisionCount = this.timeToNextCollision;
@@ -161,7 +169,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Arrival")
         {
-            Debug.Log("Final del nivel");
+            this.audioSourceManager.GetComponents<AudioSource>()[4].Play();
         }
     }
 
