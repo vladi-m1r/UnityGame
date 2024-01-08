@@ -170,6 +170,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.tag == "Arrival")
         {
             this.audioSourceManager.GetComponents<AudioSource>()[4].Play();
+            Time.timeScale = 0;
         }
     }
 
