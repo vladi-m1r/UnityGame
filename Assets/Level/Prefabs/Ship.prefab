@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nivel: 1
   healthMax: 100
+  propelForce: 100
   timeToNextCollision: 1
   audioSourceManager: {fileID: 5758373769583240599}
   floatingText: {fileID: 447113225800154789, guid: ef52b25861d27e749980799ded9d2f2b, type: 3}

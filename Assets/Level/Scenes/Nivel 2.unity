@@ -3621,9 +3621,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 4284694115566376494, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
-      propertyPath: m_Mass
-      value: 0.22
+    - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
+      propertyPath: nivel
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8959668574080198928, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4918,8 +4918,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fa0f050df324e4bad9883cdcf991ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
-  waitDuration: 4
+  speed: 15
+  waitDuration: 5
   ways: {fileID: 1742656926}
 --- !u!1001 &1937879621
 PrefabInstance:
