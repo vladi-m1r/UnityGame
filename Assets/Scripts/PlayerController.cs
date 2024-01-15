@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public int nivel;
     public int healthMax;
     private int _healt;
+    public float propelForce;
     private int healtLoseByCollision;
     private int scoreLoseByCollision;
     public float timeToNextCollision = 1;
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
         {
             if (this.Fuel > 0)
             {
-                rigidBody.AddRelativeForce(Vector3.up);
+                rigidBody.AddRelativeForce(Vector3.up * Time.deltaTime * this.propelForce);
             }
         }
     }
