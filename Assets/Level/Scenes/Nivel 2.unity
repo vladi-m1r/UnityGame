@@ -2115,8 +2115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fa0f050df324e4bad9883cdcf991ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
-  waitDuration: 2
+  speed: 32.5
+  waitDuration: 2.5
   ways: {fileID: 780362603}
 --- !u!1 &841821140
 GameObject:
@@ -5647,8 +5647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fa0f050df324e4bad9883cdcf991ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
-  waitDuration: 2
+  speed: 3.25
+  waitDuration: 2.5
   ways: {fileID: 1130855375}
 --- !u!4 &2126735550 stripped
 Transform:
