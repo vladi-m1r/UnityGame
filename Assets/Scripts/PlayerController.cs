@@ -6,27 +6,23 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public int nivel;
-    public int healthMax;
-    private int _healt;
-    public float propelForce;
-    private int healtLoseByCollision;
+    private int healthLoseByCollision;
     private int scoreLoseByCollision;
     public float timeToNextCollision = 1;
     private float timeToNextCollisionCount;
     private Rigidbody rigidBody;
-    private int rotationSpeed = 160; // degrees
     private int _score = 1000;
-    private float _fuel = 100;
-    private float fuelRecover = 10;
-    private float fuelConsumptionRate = 1.5f;
-    public GameObject audioSourceManager;
+    public AudioSource audioSourceManager;
     public GameObject floatingText;
+    public Ship ship;
+    public ShipAudioClips clips;
+    public ShipVFX shipVfx;
 
     void Start()
     {
+        this.ship.initSettings();
         this.timeToNextCollisionCount = timeToNextCollision;
-        this.Health = this.healthMax;
-        this.healtLoseByCollision = this.healthMax / (5 - nivel + 2);
+        this.healthLoseByCollision = this.ship.healthMax / (5 - nivel + 2);
         this.scoreLoseByCollision = 100;
         this.rigidBody = GetComponent<Rigidbody>();
     }
@@ -35,11 +31,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         detectInput();
-        consumeFuel();
-        updateUIFuel();
-        updateUIScore();
-        updateUIHealth();
+        this.ship.consumeFuel();
+        updateUI();
         updateCountToNexCollision();
+    }
+
+    void updateUI ()
+    {
+        updateUIFuel();
+        updateUIHealth();
+        updateUIScore();
     }
 
     void detectInput()
@@ -52,10 +53,19 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            if (this.Fuel > 0)
+            if (!this.ship.fuelIsZero())
             {
-                rigidBody.AddRelativeForce(Vector3.up * Time.deltaTime * this.propelForce);
+                rigidBody.AddRelativeForce(Vector3.up * Time.deltaTime * this.ship.propelForce);
+
+                if (!this.clips.propulse.isPlaying)
+                {
+                    this.clips.propulse.Play();
+                }
             }
+        }
+        else
+        {
+            this.clips.propulse.Stop();
         }
     }
 
@@ -81,37 +91,31 @@ public class PlayerController : MonoBehaviour
 
     void rotateRight()
     {
-        Vector3 eulerAngleVelocity = new Vector3(0, 0, -this.rotationSpeed);
+        Vector3 eulerAngleVelocity = new Vector3(0, 0, -this.ship.rotationSpeed);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateLeft()
     {
-        Vector3 eulerAngleVelocity = new Vector3(0, 0, this.rotationSpeed);
+        Vector3 eulerAngleVelocity = new Vector3(0, 0, this.ship.rotationSpeed);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateBack()
     {
-        Vector3 eulerAngleVelocity = new Vector3(this.rotationSpeed, 0, 0);
+        Vector3 eulerAngleVelocity = new Vector3(this.ship.rotationSpeed, 0, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateFront()
     {
-        Vector3 eulerAngleVelocity = new Vector3(-this.rotationSpeed, 0, 0);
+        Vector3 eulerAngleVelocity = new Vector3(-this.ship.rotationSpeed, 0, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
-
-    void consumeFuel()
-    {
-        this.Fuel -= Time.deltaTime * this.fuelConsumptionRate;
-    }
-
     void updateCountToNexCollision()
     {
         if (this.timeToNextCollisionCount > 0)
@@ -122,10 +126,9 @@ public class PlayerController : MonoBehaviour
 
     void updateUIFuel()
     {
-        StatsManager.fuel = this.Fuel;
-        AudioSource fuelAudioSource = this.audioSourceManager.GetComponents<AudioSource>()[2];
-        if (this.Fuel <= 6 && this.Fuel > 0 && !fuelAudioSource.isPlaying) {
-            fuelAudioSource.Play();
+        StatsManager.fuel = this.ship.Fuel;
+        if (this.ship.Fuel <= 0.5 && this.ship.Fuel > 0 && !this.clips.lowFuel.isPlaying) {
+            this.clips.lowFuel.Play();
         }
     }
 
@@ -136,10 +139,11 @@ public class PlayerController : MonoBehaviour
 
     void updateUIHealth()
     {
-        StatsManager.health = this.Health;
-        if (this.Health <= 0) 
+        StatsManager.health = this.ship.Health;
+        if (this.ship.isDead()) 
         {
-            this.audioSourceManager.GetComponents<AudioSource>()[3].Play();
+            Instantiate(this.shipVfx.death, this.transform.position, Quaternion.identity);
+            this.audioSourceManager.PlayOneShot(this.clips.deadSong);
             this.gameObject.SetActive(false);
         }
     }
@@ -148,9 +152,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fuel")
         {
-            this.audioSourceManager.GetComponents<AudioSource>()[1].Play();
-            this.Fuel += this.fuelRecover;
-            createFloatingText(Color.green, $"+{this.fuelRecover}");
+            this.audioSourceManager.PlayOneShot(this.clips.recoverFuel);
+            this.ship.recoverFuel();
+            createFloatingText(Color.green, $"+{this.ship.fuelRecover}");
             Destroy(collision.gameObject);
         }
     }
@@ -161,34 +165,28 @@ public class PlayerController : MonoBehaviour
         {
             if (this.timeToNextCollisionCount <= 0)
             {
-                createFloatingText(Color.red, $"-{this.healtLoseByCollision}");
-                this.audioSourceManager.GetComponent<AudioSource>().Play();
+                createFloatingText(Color.red, $"-{this.healthLoseByCollision}");
+                this.audioSourceManager.PlayOneShot(this.clips.collision);
                 this.Score -= this.scoreLoseByCollision;
-                this.Health -= this.healtLoseByCollision;
+                this.ship.takeDamage(this.healthLoseByCollision);
                 this.timeToNextCollisionCount = this.timeToNextCollision;
+                // VFX instantiate in contact point
+                Instantiate(this.shipVfx.collision, collision.GetContact(0).point, Quaternion.identity);
             }
         }
         else if (collision.gameObject.tag == "Arrival")
         {
-            this.audioSourceManager.GetComponents<AudioSource>()[4].Play();
+            this.audioSourceManager.PlayOneShot(this.clips.win);
             Time.timeScale = 0;
         }
     }
 
     private void createFloatingText(Color color, string text) {
         GameObject floatingTextContainer = Instantiate(this.floatingText, this.transform.position, Quaternion.identity);
-        floatingTextContainer.GetComponent<FloatingText>().parentTransformPosition = this.transform;
-        floatingTextContainer.GetComponent<FloatingText>().text = text;
-        floatingTextContainer.GetComponent<FloatingText>().color = color;
-    }
-
-    public float Fuel
-    {
-        get => _fuel;
-        set
-        {
-            _fuel = value < 0 ? 0 : value;
-        }
+        FloatingText floatingText = floatingTextContainer.GetComponent<FloatingText>();
+        floatingText.parentTransformPosition = this.transform;
+        floatingText.text = text;
+        floatingText.color = color;
     }
 
     public int Score
@@ -197,15 +195,6 @@ public class PlayerController : MonoBehaviour
         set
         {
             _score = value < 0 ? 0 : value;
-        }
-    }
-
-    public int Health
-    {
-        get => _healt;
-        set
-        {
-            _healt = value < 0 ? 0 : value;
         }
     }
 

@@ -76,6 +76,7 @@ MonoBehaviour:
   targetPoint: {x: 0, y: 0, z: 0}
   speed: 10
   lifeTime: 10
+  deathVFX: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
 --- !u!1001 &3881304304095336096
 PrefabInstance:
   m_ObjectHideFlags: 0
