@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private int _score = 1000;
     public AudioSource audioSourceManager;
     public GameObject floatingText;
+    public TrackingController tc;
     public Ship ship;
     public ShipAudioClips clips;
     public ShipVFX shipVfx;
@@ -45,7 +46,17 @@ public class PlayerController : MonoBehaviour
 
     void detectInput()
     {
-        propel();
+        // hand rotation opction
+        if (tc != null && tc.leftHandActive()){
+            print("Hand controller active");
+            tc.rotate();
+            tc.propel(this.ship.Fuel, this.ship.propelForce);
+        }else{
+            this.rigidBody.isKinematic = false;
+            //this.rigidBody.isKinematic = false;
+            print("Keyboard controller active");
+            propel();
+        }
         rotate();
     }
 
