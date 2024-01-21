@@ -8,13 +8,15 @@ public class Ship
     private int _health;
     public float propelForce;
     public int rotationSpeed;
-    public float _fuel = 100;
+    private float _fuel = 100;
+    public float fuelMax;
     public float fuelRecover;
     public float fuelConsumptionRate;
 
     public void initSettings()
     {
         this.Health = this.healthMax;
+        this.Fuel = this.fuelMax;
     }
 
     public void takeDamage(int damage)
@@ -56,7 +58,18 @@ public class Ship
         get => _fuel;
         set
         {
-            _fuel = value < 0 ? 0 : value;
+            if (value > 100)
+            {
+                _fuel = 100;
+            }
+            else if (value < 0)
+            {
+                _fuel = 0;
+            }
+            else
+            {
+                _fuel = value;
+            }
         }
     }
 

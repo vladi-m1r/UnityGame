@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public Ship ship;
     public ShipAudioClips clips;
     public ShipVFX shipVfx;
+    public BarStat healthBar;
+    public BarStat fuelBar;
 
     void Start()
     {
@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
         this.healthLoseByCollision = this.ship.healthMax / (5 - nivel + 2);
         this.scoreLoseByCollision = 100;
         this.rigidBody = GetComponent<Rigidbody>();
+
+        // Health, Fuel Bar init
+        this.healthBar.setMaxValue(this.ship.healthMax);
+        this.fuelBar.setMaxValue(this.ship.fuelMax);
     }
 
     // Update is called once per frame
@@ -136,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     void updateUIFuel()
     {
-        StatsManager.fuel = this.ship.Fuel;
+        this.fuelBar.updateValue(this.ship.Fuel);
         if (this.ship.Fuel <= 0.5 && this.ship.Fuel > 0 && !this.clips.lowFuel.isPlaying) {
             this.clips.lowFuel.Play();
         }
@@ -149,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
     void updateUIHealth()
     {
-        StatsManager.health = this.ship.Health;
+        this.healthBar.updateValue(this.ship.Health);
         if (this.ship.isDead()) 
         {
             Instantiate(this.shipVfx.death, this.transform.position, Quaternion.identity);
