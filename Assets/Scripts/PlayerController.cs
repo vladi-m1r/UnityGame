@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
             tc.rotate();
             tc.propel(this.ship.Fuel, this.ship.propelForce);
         }else{
-            this.rigidBody.isKinematic = false;
             //this.rigidBody.isKinematic = false;
             print("Keyboard controller active");
             propel();
@@ -102,28 +101,28 @@ public class PlayerController : MonoBehaviour
 
     void rotateRight()
     {
-        Vector3 eulerAngleVelocity = new Vector3(0, 0, -this.ship.rotationSpeed);
+        Vector3 eulerAngleVelocity = new Vector3(this.ship.rotationSpeed, 0, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateLeft()
     {
-        Vector3 eulerAngleVelocity = new Vector3(0, 0, this.ship.rotationSpeed);
+        Vector3 eulerAngleVelocity = new Vector3(-this.ship.rotationSpeed, 0, 0);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateBack()
     {
-        Vector3 eulerAngleVelocity = new Vector3(this.ship.rotationSpeed, 0, 0);
+        Vector3 eulerAngleVelocity = new Vector3(0, 0, this.ship.rotationSpeed);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }
 
     void rotateFront()
     {
-        Vector3 eulerAngleVelocity = new Vector3(-this.ship.rotationSpeed, 0, 0);
+        Vector3 eulerAngleVelocity = new Vector3(0, 0, -this.ship.rotationSpeed);
         Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
         rigidBody.MoveRotation(rigidBody.rotation * deltaRotation);
     }

@@ -30,21 +30,21 @@ public class TrackingController : MonoBehaviour
     public void rotate(){
         Hand h1 = Hands.Provider.GetHand(Chirality.Left);
         if(rb == null){
+            // Log
         }else if(h1 == null){
-            //rb.isKinematic = false;
+            // Log
         }else{
             rotateHand(h1);
         }
     }
     private void rotateHand(Hand hand1){
-        //rb.isKinematic = true;
         Quaternion handRotation = hand1.Rotation;
         target.transform.rotation = handRotation;
     }
     public void propel(float fuel, float propelForce){
         Hand h1 = Hands.Provider.GetHand(Chirality.Left);
         if (h1.IsPinching()){
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
             print("IS KINE FALSE");
             if (fuel > 0){
                 rb.AddRelativeForce(Vector3.up * Time.deltaTime * propelForce);
