@@ -3003,7 +3003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: gravity
-      value: 0.5
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
@@ -3993,6 +3993,10 @@ PrefabInstance:
     - target: {fileID: 5222557306594035871, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: m_Name
       value: Gravity Field (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
+      propertyPath: gravity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
@@ -8023,7 +8027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: gravity
-      value: 0.5
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
@@ -8110,6 +8114,10 @@ PrefabInstance:
     - target: {fileID: 5222557306594035871, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: m_Name
       value: Gravity Field (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
+      propertyPath: gravity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
@@ -8681,6 +8689,10 @@ PrefabInstance:
     - target: {fileID: 5222557306594035871, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: m_Name
       value: Gravity Field (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
+      propertyPath: gravity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
@@ -22693,15 +22705,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959668574080198928, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 180
+      value: -294.6
       objectReference: {fileID: 0}
     - target: {fileID: 8959668574080198928, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.9
+      value: 6.46
       objectReference: {fileID: 0}
     - target: {fileID: 8959668574080198928, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.5
+      value: 19.75
       objectReference: {fileID: 0}
     - target: {fileID: 8959668574080198928, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26261,7 +26273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: gravity
-      value: 0.5
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
@@ -27457,6 +27469,10 @@ PrefabInstance:
       value: Gravity Field (9)
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
+      propertyPath: gravity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
       value: 2
       objectReference: {fileID: 0}
@@ -27540,7 +27556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: gravity
-      value: 0.5
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
@@ -29503,7 +29519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: gravity
-      value: 0.5
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
@@ -29806,6 +29822,10 @@ PrefabInstance:
     - target: {fileID: 5222557306594035871, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: m_Name
       value: Gravity Field (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
+      propertyPath: gravity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7003739048118489752, guid: 7a69699c6bd61634f949d5c4a8c31dd6, type: 3}
       propertyPath: cooldown
