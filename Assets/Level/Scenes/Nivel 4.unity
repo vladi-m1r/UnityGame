@@ -7556,7 +7556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703063984027389303, guid: 2eba28d167941944285c09bdc5d7735b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2.0110931
+      value: 2.0110893
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7583,6 +7583,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3434385e055de4b4ba81e534faee8957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &564417374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8258373563916683224, guid: 2eba28d167941944285c09bdc5d7735b, type: 3}
+  m_PrefabInstance: {fileID: 564417371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc2977ef9ef7a0468748d31b1ab30e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &564790559
@@ -22155,6 +22166,10 @@ PrefabInstance:
       propertyPath: fuelBar
       value: 
       objectReference: {fileID: 564417373}
+    - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
+      propertyPath: scoreUI
+      value: 
+      objectReference: {fileID: 564417374}
     - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: healthBar
       value: 

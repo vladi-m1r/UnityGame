@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public ShipVFX shipVfx;
     public BarStat healthBar;
     public BarStat fuelBar;
+    public ScoreUI scoreUI;
 
     void Start()
     {
@@ -148,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
     void updateUIScore()
     {
-        StatsManager.score = this.Score;
+        this.scoreUI.updateValue(this.Score);
     }
 
     void updateUIHealth()

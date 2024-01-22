@@ -5268,11 +5268,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3382292117769666684, guid: 9bdf9cdf5e6d80d4d8316aaccac5434e, type: 3}
       propertyPath: meteorsPerIteration
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3382292117769666684, guid: 9bdf9cdf5e6d80d4d8316aaccac5434e, type: 3}
       propertyPath: timeBetweenInteration
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5481060175075010102, guid: 9bdf9cdf5e6d80d4d8316aaccac5434e, type: 3}
       propertyPath: m_Name
@@ -6433,6 +6433,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8438526919582271165, guid: 1e0bf2162812e2144b637887978b28b7, type: 3}
   m_PrefabInstance: {fileID: 992198955}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &997689821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8258373563916683224, guid: 2eba28d167941944285c09bdc5d7735b, type: 3}
+  m_PrefabInstance: {fileID: 529703545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc2977ef9ef7a0468748d31b1ab30e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1000770017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11048,13 +11059,13 @@ PrefabInstance:
       value: Ship
       objectReference: {fileID: 0}
     - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
-      propertyPath: nivel
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: fuelBar
       value: 
       objectReference: {fileID: 529703547}
+    - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
+      propertyPath: scoreUI
+      value: 
+      objectReference: {fileID: 997689821}
     - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: healthBar
       value: 
@@ -13504,11 +13515,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3382292117769666684, guid: 9bdf9cdf5e6d80d4d8316aaccac5434e, type: 3}
       propertyPath: meteorsPerIteration
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3382292117769666684, guid: 9bdf9cdf5e6d80d4d8316aaccac5434e, type: 3}
       propertyPath: timeBetweenInteration
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5481060175075010102, guid: 9bdf9cdf5e6d80d4d8316aaccac5434e, type: 3}
       propertyPath: m_Name
