@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public BarStat healthBar;
     public BarStat fuelBar;
     public ScoreUI scoreUI;
+    public GameObject propelVfx;
 
     void Start()
     {
@@ -66,20 +67,23 @@ public class PlayerController : MonoBehaviour
 
     void propel()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && !this.ship.fuelIsZero())
         {
-            if (!this.ship.fuelIsZero())
-            {
-                rigidBody.AddRelativeForce(Vector3.up * Time.deltaTime * this.ship.propelForce);
+            rigidBody.AddRelativeForce(Vector3.up * Time.deltaTime * this.ship.propelForce);
 
-                if (!this.clips.propulse.isPlaying)
-                {
-                    this.clips.propulse.Play();
-                }
+            if (!this.clips.propulse.isPlaying)
+            {
+                this.clips.propulse.Play();
+            }
+            // vfx propel show effect
+            if (!this.propelVfx.activeSelf)
+            {
+                this.propelVfx.SetActive(true);
             }
         }
         else
         {
+            this.propelVfx.SetActive(false);
             this.clips.propulse.Stop();
         }
     }
