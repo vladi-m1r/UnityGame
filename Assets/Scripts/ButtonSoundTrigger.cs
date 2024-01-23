@@ -10,7 +10,7 @@ public class ButtonSoundTrigger : MonoBehaviour
     void Awake()
     {
         // Audio for click
-        this.audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        this.audioManager = AudioManager.audioManager;
         GetComponent<Button>().onClick.AddListener(() => this.audioManager.playAudio(this.audioManager.clickButton));
 
         // Audio for hover button

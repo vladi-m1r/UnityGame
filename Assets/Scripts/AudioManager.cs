@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,9 +11,31 @@ public class AudioManager: MonoBehaviour
     public AudioSource sfx;
 
     // UI Audio EFX
-    [Header("UI EFX")]
+    [Header("UI SFX")]
     public AudioClip hoverButton;
     public AudioClip clickButton;
+
+    // Sound efx game
+    [Header("GAME SFX")]
+    public AudioClip win;
+
+    [Header("BGM GAME")]
+    public AudioClip level1;
+    public AudioClip level2;
+    public AudioClip level3;
+    public AudioClip level4;
+    public AudioClip level5;
+    public AudioClip lose;
+
+    // Sound efx ship
+    [Header("SHIP SFX")]
+    public AudioClip death;
+    public AudioClip collision;
+    public AudioClip obtainedFuel;
+
+    // Sound efx ship special treatment
+    public AudioSource propulse;
+    public AudioSource lowFuel;
 
     // static instance to save the gameobject in loadscene
     public static AudioManager audioManager;
@@ -35,10 +58,4 @@ public class AudioManager: MonoBehaviour
         this.sfx.PlayOneShot(audioClip);
     }
 
-    public void nextSceneText()
-    {
-        SceneManager.LoadScene(10);
-    }
-
 }
-
