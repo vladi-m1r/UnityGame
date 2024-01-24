@@ -10,11 +10,10 @@ public class PlayerController : MonoBehaviour
     private float timeToNextCollisionCount;
     private Rigidbody rigidBody;
     private int _score = 1000;
-    public AudioSource audioSourceManager;
+    private AudioManager audioManager;
     public GameObject floatingText;
     public TrackingController tc;
     public Ship ship;
-    public ShipAudioClips clips;
     public ShipVFX shipVfx;
     public BarStat healthBar;
     public BarStat fuelBar;
@@ -32,6 +31,9 @@ public class PlayerController : MonoBehaviour
         // Health, Fuel Bar init
         this.healthBar.setMaxValue(this.ship.healthMax);
         this.fuelBar.setMaxValue(this.ship.fuelMax);
+
+        // Audio
+        this.audioManager = AudioManager.audioManager;
     }
 
     // Update is called once per frame
@@ -71,9 +73,9 @@ public class PlayerController : MonoBehaviour
         {
             rigidBody.AddRelativeForce(Vector3.up * Time.deltaTime * this.ship.propelForce);
 
-            if (!this.clips.propulse.isPlaying)
+            if (!this.audioManager.propulse.isPlaying)
             {
-                this.clips.propulse.Play();
+                this.audioManager.propulse.Play();
             }
             // vfx propel show effect
             if (!this.propelVfx.activeSelf)
@@ -84,7 +86,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             this.propelVfx.SetActive(false);
-            this.clips.propulse.Stop();
+            this.audioManager.propulse.Stop();
         }
     }
 
@@ -146,8 +148,8 @@ public class PlayerController : MonoBehaviour
     void updateUIFuel()
     {
         this.fuelBar.updateValue(this.ship.Fuel);
-        if (this.ship.Fuel <= 0.5 && this.ship.Fuel > 0 && !this.clips.lowFuel.isPlaying) {
-            this.clips.lowFuel.Play();
+        if (this.ship.Fuel <= 0.5 && this.ship.Fuel > 0 && !this.audioManager.lowFuel.isPlaying) {
+            this.audioManager.lowFuel.Play();
         }
     }
 
@@ -162,7 +164,7 @@ public class PlayerController : MonoBehaviour
         if (this.ship.isDead()) 
         {
             Instantiate(this.shipVfx.death, this.transform.position, Quaternion.identity);
-            this.audioSourceManager.PlayOneShot(this.clips.deadSong);
+            this.audioManager.playAudio(this.audioManager.death);
             this.gameObject.SetActive(false);
         }
     }
@@ -171,7 +173,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fuel")
         {
-            this.audioSourceManager.PlayOneShot(this.clips.recoverFuel);
+            this.audioManager.playAudio(this.audioManager.obtainedFuel);
             this.ship.recoverFuel();
             createFloatingText(Color.green, $"+{this.ship.fuelRecover}");
             Destroy(collision.gameObject);
@@ -185,7 +187,7 @@ public class PlayerController : MonoBehaviour
             if (this.timeToNextCollisionCount <= 0)
             {
                 createFloatingText(Color.red, $"-{this.healthLoseByCollision}");
-                this.audioSourceManager.PlayOneShot(this.clips.collision);
+                this.audioManager.playAudio(this.audioManager.collision);
                 this.Score -= this.scoreLoseByCollision;
                 this.ship.takeDamage(this.healthLoseByCollision);
                 this.timeToNextCollisionCount = this.timeToNextCollision;
@@ -195,7 +197,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Arrival")
         {
-            this.audioSourceManager.PlayOneShot(this.clips.win);
+            this.audioManager.playAudio(this.audioManager.win);
             Time.timeScale = 0;
         }
     }
