@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public BarStat fuelBar;
     public ScoreUI scoreUI;
     public GameObject propelVfx;
+    public UnityEvent deathEvent;
 
     void Start()
     {
@@ -56,12 +59,12 @@ public class PlayerController : MonoBehaviour
     {
         // hand rotation opction
         if (tc != null && tc.leftHandActive()){
-            print("Hand controller active");
+            //print("Hand controller active");
             tc.rotate();
             tc.propel(this.ship.Fuel, this.ship.propelForce);
         }else{
             //this.rigidBody.isKinematic = false;
-            print("Keyboard controller active");
+            //print("Keyboard controller active");
             propel();
         }
         rotate();
@@ -147,9 +150,15 @@ public class PlayerController : MonoBehaviour
 
     void updateUIFuel()
     {
+        IEnumerator delay(int seconds) {
+            yield return new WaitForSeconds(seconds);
+            this.deathEvent.Invoke();
+        }
+
         this.fuelBar.updateValue(this.ship.Fuel);
         if (this.ship.Fuel <= 0.5 && this.ship.Fuel > 0 && !this.audioManager.lowFuel.isPlaying) {
             this.audioManager.lowFuel.Play();
+            StartCoroutine(delay(2));
         }
     }
 
@@ -165,6 +174,7 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(this.shipVfx.death, this.transform.position, Quaternion.identity);
             this.audioManager.playAudio(this.audioManager.death);
+            this.deathEvent.Invoke();
             this.gameObject.SetActive(false);
         }
     }
