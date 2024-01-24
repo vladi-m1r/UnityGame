@@ -7,7 +7,7 @@ public class ButtonSoundTrigger : MonoBehaviour
 
     private AudioManager audioManager;
 
-    void Awake()
+    void Start()
     {
         // Audio for click
         this.audioManager = AudioManager.audioManager;
