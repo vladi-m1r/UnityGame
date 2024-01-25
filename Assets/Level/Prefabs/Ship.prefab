@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a043458995b4554686fc990465b2ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nivel: 2
   timeToNextCollision: 1
   floatingText: {fileID: 447113225800154789, guid: ef52b25861d27e749980799ded9d2f2b, type: 3}
   tc: {fileID: 5325104176262701470}
@@ -171,6 +170,7 @@ MonoBehaviour:
   fuelBar: {fileID: 0}
   scoreUI: {fileID: 0}
   propelVfx: {fileID: 3859038812633667104}
+  levelSettings: {fileID: 0}
   deathEvent:
     m_PersistentCalls:
       m_Calls:

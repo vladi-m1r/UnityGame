@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int nivel;
     private int healthLoseByCollision;
     private int scoreLoseByCollision;
     public float timeToNextCollision = 1;
@@ -21,13 +20,14 @@ public class PlayerController : MonoBehaviour
     public BarStat fuelBar;
     public ScoreUI scoreUI;
     public GameObject propelVfx;
+    public LevelSettings levelSettings;
     public UnityEvent deathEvent;
 
     void Start()
     {
         this.ship.initSettings();
         this.timeToNextCollisionCount = timeToNextCollision;
-        this.healthLoseByCollision = this.ship.healthMax / (5 - nivel + 2);
+        this.healthLoseByCollision = this.ship.healthMax / (5 - levelSettings.level + 2);
         this.scoreLoseByCollision = 100;
         this.rigidBody = GetComponent<Rigidbody>();
 
