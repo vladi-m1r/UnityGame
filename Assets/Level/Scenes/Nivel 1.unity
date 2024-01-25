@@ -9972,6 +9972,10 @@ PrefabInstance:
       value: Ship
       objectReference: {fileID: 0}
     - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
+      propertyPath: nivel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127677615207634492, guid: 1061f6d91153c4e4c851198c213c6d5f, type: 3}
       propertyPath: fuelBar
       value: 
       objectReference: {fileID: 2028622784}
