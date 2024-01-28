@@ -57,17 +57,14 @@ public class PlayerController : MonoBehaviour
 
     void detectInput()
     {
-        // hand rotation opction
+        // hand propel and rotation option
         if (tc != null && tc.leftHandActive()){
-            //print("Hand controller active");
             tc.rotate();
-            tc.propel(this.ship.Fuel, this.ship.propelForce);
+            tc.propel(this.ship.Fuel, this.ship.propelForce, this.propelVfx, this.audioManager);
         }else{
-            //this.rigidBody.isKinematic = false;
-            //print("Keyboard controller active");
             propel();
+            rotate();
         }
-        rotate();
     }
 
     void propel()

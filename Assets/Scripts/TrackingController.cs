@@ -41,14 +41,21 @@ public class TrackingController : MonoBehaviour
         Quaternion handRotation = hand1.Rotation;
         target.transform.rotation = handRotation;
     }
-    public void propel(float fuel, float propelForce){
-        Hand h1 = Hands.Provider.GetHand(Chirality.Left);
-        if (h1.IsPinching()){
-            //rb.isKinematic = false;
-            print("IS KINE FALSE");
-            if (fuel > 0){
-                rb.AddRelativeForce(Vector3.up * Time.deltaTime * propelForce);
+    public void propel(float fuel, float propelForce, GameObject propelVfx, AudioManager audioManager){
+        Hand hand = Hands.Provider.GetHand(Chirality.Left);
+        if (hand.IsPinching() && fuel > 0){
+            rb.AddRelativeForce(Vector3.up * Time.deltaTime * propelForce);
+
+            if(!audioManager.propulse.isPlaying){
+                audioManager.propulse.Play();
             }
+            // vfx propel show effect
+            if(!propelVfx.activeSelf){
+                propelVfx.SetActive(true);
+            }
+        }else{
+            propelVfx.SetActive(false);
+            audioManager.propulse.Stop();
         }
     }
 }
