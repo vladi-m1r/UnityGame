@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class scriptAyuda : MonoBehaviour
+public class Help : MonoBehaviour
 {
-   public void regresar(){
+   public void goBack(){
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
   }
    public void niveles(){

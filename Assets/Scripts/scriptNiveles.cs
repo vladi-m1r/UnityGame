@@ -5,22 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class scriptNiveles : MonoBehaviour
 {
-    public void nivel1(){
+  public void loadLevel1()
+  {
     SceneManager.LoadScene(4);
   }
-   public void nivel2(){
+  public void loadLevel2()
+  {
     SceneManager.LoadScene(5);
   }
-   public void nivel3(){
+  public void loadLevel3()
+  {
     SceneManager.LoadScene(6);
   }
-   public void nivel4(){
+  public void loadLevel4()
+  {
     SceneManager.LoadScene(7);
   }
-   public void nivel5(){
+  public void loadLevel5()
+  {
     SceneManager.LoadScene(8);
   }
-  public void regresar(){
+  public void goBack()
+  {
     SceneManager.LoadScene(0);
   }
 }
