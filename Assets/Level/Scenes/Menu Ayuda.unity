@@ -743,6 +743,18 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 1009269220}
+    - target: {fileID: 9025991216438071743, guid: aabec6a1acb66291ea1a4dd018663c4e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1197607115}
+    - target: {fileID: 9025991216438071743, guid: aabec6a1acb66291ea1a4dd018663c4e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 9025991216438071743, guid: aabec6a1acb66291ea1a4dd018663c4e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Help, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 9089538777844451613, guid: aabec6a1acb66291ea1a4dd018663c4e, type: 3}
       propertyPath: m_Name
       value: GoBackButton
