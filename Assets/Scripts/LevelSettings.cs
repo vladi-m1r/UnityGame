@@ -5,9 +5,9 @@ public class LevelSettings : MonoBehaviour
 
     public int level;
 
-    void Start()
+    void Awake()
     {
-        PlayerPrefs.SetInt("currentLevel", this.level + 3);
+        PlayerPrefs.SetInt("currentLevel", this.level);
     }
 
 }

@@ -18,7 +18,6 @@ public class GameStateManager : MonoBehaviour
 
     public void loadGameOverScene()
     {
-        AudioManager.audioManager.playAudio(AudioManager.audioManager.lose);
         SceneManager.LoadScene(10);
     }
  
