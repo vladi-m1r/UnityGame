@@ -224,8 +224,8 @@ GameObject:
   - component: {fileID: 7697732773012339978}
   - component: {fileID: 326045351450255248}
   - component: {fileID: 9025991216438071743}
-  - component: {fileID: 336560188127657444}
-  - component: {fileID: 690425108190234597}
+  - component: {fileID: 2477905612391953584}
+  - component: {fileID: 7243909528529720189}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -347,19 +347,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &336560188127657444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9089538777844451613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d42283cc780df4bb96444fe5d4251f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &690425108190234597
+--- !u!114 &2477905612391953584
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -376,3 +364,15 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &7243909528529720189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9089538777844451613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d42283cc780df4bb96444fe5d4251f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
